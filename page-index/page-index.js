@@ -688,6 +688,33 @@ const pageIndex = [
     href: "tutorials",
     children: [
       {
+        Title: "Getting Started with Promscale",
+        type: PAGE,
+        href: "getting-started-with-promscale",
+        children: [
+          {
+            Title: "The Benefits of using Promscale",
+            type: PAGE,
+            href: "promscale-benefits"
+          },
+          {
+            Title: "How Promscale Works",
+            type: PAGE,
+            href: "promscale-how-it-works"
+          },
+          {
+            Title: "Installing Promscale",
+            type: PAGE,
+            href: "promscale-install"
+          },
+          {
+            Title: "Run Queries with PromQL and SQL",
+            type: PAGE,
+            href: "promscale-run-queries"
+          }
+        ],
+      },
+      {
         Title: "Get started: Hello, Timescale!",
         type: PAGE,
         href: "tutorial-hello-timescale",
