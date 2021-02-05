@@ -1,12 +1,14 @@
 ## 4. Running queries using Promscale
 
-Promscale offers the combined power of PromQL and SQL, enabling you to ask any question, create any dashboard, and achieve greater visibility into the systems you monitor.
+Promscale offers the combined power of PromQL and SQL, enabling you to ask any 
+question, create any dashboard, and achieve greater visibility into the systems 
+you monitor.
 
 In the configuration used in Part 3 above, Prometheus will scrape the Node Exporter every 10s and metrics will be stored in both Prometheus and TimescaleDB, via Promscale. 
 
 This section will illustrate how to run simple and complex SQL queries against Promscale, as well as queries in PromQL.
 
-### 4.1 SQL Queries in Promscale
+### 4.1 SQL Queries in Promscale [](sql-queries)
 
 You can query Promscale in SQL from your favorite favorite SQL tool or using psql: 
 

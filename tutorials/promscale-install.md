@@ -13,14 +13,14 @@ For demonstration purposes, we will use Docker to get up and running with Promsc
 The easiest way to get started is by using Docker images. Make sure you have Docker installed on your local machine ([Docker installation instructions][docker]).
 
 The instructions below have 4 steps:
-1. Install TimescaleDB
+1. [Install TimescaleDB](#install-timescaledb)
 2. Install Prometheus
 3. Install Promscale
 4. Install node_exporter
 
 >:WARNING: The instructions below are local testing purposes only and should not be used to set up a production environment.
 
-### Step 1: Install TimescaleDB
+### Step 1: Install TimescaleDB [](install-timescaledb)
 
 First, let's create a network specific to Promscale and TimescaleDB:
 
