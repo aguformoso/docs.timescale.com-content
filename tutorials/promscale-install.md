@@ -14,9 +14,9 @@ The easiest way to get started is by using Docker images. Make sure you have Doc
 
 The instructions below have 4 steps:
 1. [Install TimescaleDB](#install-timescaledb)
-2. Install Prometheus
-3. Install Promscale
-4. Install node_exporter
+2. [Install Promscale](#install-promscale)
+3. [Install node_exporter](#install-node-exporter)
+4. [Install Prometheus](#install-prometheus)
 
 >:WARNING: The instructions below are local testing purposes only and should not be used to set up a production environment.
 
@@ -24,7 +24,9 @@ The instructions below have 4 steps:
 
 First, let's create a network specific to Promscale and TimescaleDB:
 
-```docker network create --driver bridge promscale-timescaledb```
+```bash
+docker network create --driver bridge promscale-timescaledb
+```
 
 
 Secondly, let's install and spin up an instance of TimescaleDB in a docker container.  This is where Promscale will store all metrics data scraped from Prometheus targets. 
@@ -43,7 +45,7 @@ The above commands creates a TimescaleDB instanced named `timescaledb` (via the 
 > 
 > Note that for production deployments, you will want to fix the docker tag to a particular version instead of `pg12-latest`
 
-### Step 2: Install Promscale
+### Step 2: Install Promscale [](install-promscale)
 
 Since we have TimescaleDB up and running, let’s spin up a [Promscale][promscale-github], using the [Promscale docker image][promscale-docker-image] available on Docker Hub:
 
@@ -60,9 +62,9 @@ In the `-db-uri` flag above, the second mention of `postgres` refers the the use
 >
 > Furthermore, note that value`<password>` should be replaced with the password you set up for TimescaleDB in step 1 above.
 
-### Step 3: Start collecting metrics using node_exporter
+### Step 3: Start collecting metrics using node_exporter [](install-node-exporter)
 
-`node_exporter` is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors. To learn more about it, refer to the [Node Exporter Github][].
+`node_exporter` is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels*, written in Go with pluggable metric collectors. To learn more about it, refer to the [Node Exporter Github][node-exporter-github].
 
 For the purposes of this tutorial, we need a service that will expose metrics to Prometheus. We will use the `node_exporter` for this purpose. 
 
@@ -77,13 +79,13 @@ The command above creates a node exporter instanced named `node_exporter`, which
 
 Once the Node Exporter is running, you can verify that system metrics are being exported by visiting its `/metrics` endpoint at the following URL: `http://localhost:9100/metrics`. Prometheus will scrape this `/metrics` endpoint to get metrics.
 
-### Step 4: Install Prometheus
+### Step 4: Install Prometheus [](install-prometheus)
 
 All that's left is to spin up Prometheus. 
 
 First we need to ensure that our Prometheus configuration file `prometheus.yml` is pointing to Promscale and that we’ve properly set the scrape configuration target to point to our `node_exporter` instance, created in Step 3.
 
-Here is a basic `prometheus.yml` configuration file that we'll use for this tutorial. ([More information on Prometheus configuration][first steps])
+Here is a basic `prometheus.yml` configuration file that we'll use for this tutorial. ([More information on Prometheus configuration][prometheus-first-steps])
 
 **A basic `prometheus.yml` file for Promscale:**
 ```yaml
@@ -115,7 +117,7 @@ docker run \
     prom/prometheus
 ```
 
-### BONUS: Docker Compose File
+### BONUS: Docker Compose File [](install-promscale-using-docker-compose)
 To save time spinning up and running each docker container separately, here is a sample`docker-compose.yml` file that will spin up docker containers for TimescaleDB, Promscale, node_exporter and Prometheus using the configurations mentioned in Steps 1-4 above. 
 
 > :WARNING: Ensure you have the Prometheus configuration file `prometheus.yml` in the same directory as `docker-compose.yml`)
@@ -129,42 +131,13 @@ To use the docker-compose file above method, follow these steps:
 
 Now you're ready to run some queries!
 
-
-[prometheus-webpage]:https://prometheus.io
-[promscale-blog]: https://blog.timescale.com/blog/promscale-analytical-platform-long-term-store-for-prometheus-combined-sql-promql-postgresql/
-[promscale-readme]: https://github.com/timescale/promscale/blob/master/README.md
-[design-doc]: https://tsdb.co/prom-design-doc
-[promscale-github]: https://github.com/timescale/promscale#promscale
-[promscale-extension]: https://github.com/timescale/promscale_extension#promscale-extension
-[promscale-helm-chart]: https://github.com/timescale/promscale/tree/master/helm-chart
 [tobs-github]: https://github.com/timescale/tobs
+[promscale-helm-chart]: https://github.com/timescale/promscale/tree/master/helm-chart
 [promscale-baremetal-docs]: https://github.com/timescale/promscale/blob/master/docs/bare-metal-promscale-stack.md#deploying-promscale-on-bare-metal
-[Prometheus]: https://prometheus.io/
-[timescaledb vs]: /introduction/timescaledb-vs-postgres
-[prometheus storage docs]: https://prometheus.io/docs/prometheus/latest/storage/
-[prometheus lts]: https://prometheus.io/docs/operating/integrations/#remote-endpoints-and-storage
-[prometheus-federation]: https://prometheus.io/docs/prometheus/latest/federation/
-[docker-pg-prom-timescale]: https://hub.docker.com/r/timescale/pg_prometheus
-[postgresql adapter]: https://github.com/timescale/prometheus-postgresql-adapter
-[Prometheus native format]: https://prometheus.io/docs/instrumenting/exposition_formats/
 [docker]: https://docs.docker.com/install
-[docker image]: https://hub.docker.com/r/timescale/prometheus-postgresql-adapter
-[Node Exporter]: https://github.com/prometheus/node_exporter
-[first steps]: https://prometheus.io/docs/introduction/first_steps/#configuring-prometheus
-[for example]: https://www.zdnet.com/article/linux-meltdown-patch-up-to-800-percent-cpu-overhead-netflix-tests-show/
-[promql-functions]: https://prometheus.io/docs/prometheus/latest/querying/functions/
-[promscale-intro-video]: https://youtube.com/playlist?list=PLsceB9ac9MHTrmU-q7WCEvies-o7ts3ps
-[Writing to Promscale]: https://github.com/timescale/promscale/blob/master/docs/writing_to_promscale.md
-[Node Exporter Github]: https://github.com/prometheus/node_exporter#node-exporter
 [promscale-github-installation]: https://github.com/timescale/promscale#-choose-your-own-installation-adventure
+[promscale-github]: https://github.com/timescale/promscale#promscale
 [promscale-docker-image]: https://hub.docker.com/r/timescale/promscale
-[psql docs]: https://www.postgresql.org/docs/13/app-psql.html
-[an Luu's post on SQL query]: https://danluu.com/metrics-analytics/
-[grafana-homepage]:https://grafana.com
-[promlens-homepage]: https://promlens.com
-[multinode-blog]:https://blog.timescale.com/blog/timescaledb-2-0-a-multi-node-petabyte-scale-completely-free-relational-database-for-time-series/
-[grafana-docker]: https://grafana.com/docs/grafana/latest/installation/docker/#install-official-and-community-grafana-plugins
-[timescaledb-multinode-docs]:https://docs.timescale.com/latest/getting-started/setup-multi-node-basic
-[timescale-analytics]:https://github.com/timescale/timescale-analytics
-[hello-timescale]:https://docs.timescale.com/latest/tutorials/tutorial-hello-timescale
+[node-exporter-github]: https://github.com/prometheus/node_exporter#node-exporter
 [promscale-docker-compose]: https://github.com/timescale/promscale/blob/master/docker-compose/docker-compose.yaml
+[prometheus-first-steps]: https://prometheus.io/docs/introduction/first_steps/#configuring-prometheus
