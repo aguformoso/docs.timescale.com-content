@@ -87,10 +87,11 @@ curl --header "Content-Type: application/json" \
 
 For more details on writing custom time-series data to Promscale can be found in this document: [Writing to Promscale][writing-to-promscale]
 
-
+Next Step: [How Promscale Works][how-promscale-works].
 
 [prometheus-storage-docs]: https://prometheus.io/docs/prometheus/latest/storage/
 [prometheus-federation]: https://prometheus.io/docs/prometheus/latest/federation/
 [promql-functions]: https://prometheus.io/docs/prometheus/latest/querying/functions/
-[multinode-blog]:https://blog.timescale.com/blog/timescaledb-2-0-a-multi-node-petabyte-scale-completely-free-relational-database-for-time-series/
-[writing-to-promscale]:https://github.com/timescale/promscale/blob/master/docs/writing_to_promscale.md
+[multinode-blog]: https://blog.timescale.com/blog/timescaledb-2-0-a-multi-node-petabyte-scale-completely-free-relational-database-for-time-series/
+[writing-to-promscale]: https://github.com/timescale/promscale/blob/master/docs/writing_to_promscale.md
+[how-promscale-works]: /tutorials/getting-started-with-promscale/promscale-how-it-works

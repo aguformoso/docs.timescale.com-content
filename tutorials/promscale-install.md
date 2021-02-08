@@ -131,6 +131,8 @@ To use the docker-compose file above method, follow these steps:
 
 Now you're ready to run some queries!
 
+Next Step: [Running queries using Promscale][queries-using-promscale].
+
 [tobs-github]: https://github.com/timescale/tobs
 [promscale-helm-chart]: https://github.com/timescale/promscale/tree/master/helm-chart
 [promscale-baremetal-docs]: https://github.com/timescale/promscale/blob/master/docs/bare-metal-promscale-stack.md#deploying-promscale-on-bare-metal
@@ -141,3 +143,4 @@ Now you're ready to run some queries!
 [node-exporter-github]: https://github.com/prometheus/node_exporter#node-exporter
 [promscale-docker-compose]: https://github.com/timescale/promscale/blob/master/docker-compose/docker-compose.yaml
 [prometheus-first-steps]: https://prometheus.io/docs/introduction/first_steps/#configuring-prometheus
+[queries-using-promscale]: /tutorials/getting-started-with-promscale/promscale-run-queries 

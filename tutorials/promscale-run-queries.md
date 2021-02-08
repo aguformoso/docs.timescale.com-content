@@ -274,6 +274,6 @@ rate(go_memstats_alloc_bytes{instance="localhost:9090"}[5m])
 
 [psql-docs]: https://www.postgresql.org/docs/13/app-psql.html
 [Dan-Luu's-post-on-SQL-query]: https://danluu.com/metrics-analytics/
-[grafana-homepage]:https://grafana.com
+[grafana-homepage]: https://grafana.com
 [promlens-homepage]: https://promlens.com
 [grafana-docker]: https://grafana.com/docs/grafana/latest/installation/docker/#install-official-and-community-grafana-plugins

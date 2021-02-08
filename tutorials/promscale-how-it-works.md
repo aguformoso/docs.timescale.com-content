@@ -156,6 +156,9 @@ Each label row contains information about a particular label, such as the label 
 
 For examples of querying a specific metric view, see [querying using SQL][querying-using-sql] of this tutorial.
 
+Next Step: [Installing Promscale][installing-promscale]. 
+
 [prometheus-native-format]: https://prometheus.io/docs/instrumenting/exposition_formats/
 [promscale-extension]: https://github.com/timescale/promscale_extension#promscale-extension
 [querying-using-sql]: /tutorials/getting-started-with-promscale/promscale-run-queries#sql-queries
+[installing-promscale]: /tutorials/getting-started-with-promscale/promscale-install
